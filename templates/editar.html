@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto</title>
+    <!-- CSS de Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5" style="max-width: 500px;">
+        <div class="card shadow">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="card-title mb-0">Editar Producto</h4>
+            </div>
+            <div class="card-body">
+                <form action="/editar/{{ producto.id }}" method="POST">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre del Producto</label>
+                        <!-- Se precargan los valores actuales con Jinja2 -->
+                        <input type="text" name="nombre" id="nombre" class="form-control" value="{{ producto.nombre }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio ($)</label>
+                        <input type="number" step="0.01" name="precio" id="precio" class="form-control" value="{{ producto.precio }}" required>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <a href="/" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-warning">Actualizar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

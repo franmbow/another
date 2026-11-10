@@ -36,7 +36,43 @@
                         </form>
                     </div>
                 </div>
-
+            </div>
+            
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="card-title mb-0">Lista de productos</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table table-striped mb-0">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Precio ($)</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for producto in productos %}
+                                <tr>
+                                    <td>{{ producto.id }}</td>
+                                    <td>{{ producto.nombre }}</td>
+                                    <td>{{ producto.precio }}</td>
+                                    <td>
+                                        <a href="/editar/{{ producto.id }}" class="btn btn-warning btn-sm">Editar</a>
+                                        <a href="/eliminar/{{ producto.id }}" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de eliminar este producto?');">Eliminar</a>
+                                    </td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="4" class="text-center">No hay productos disponibles.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

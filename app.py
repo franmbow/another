@@ -37,13 +37,24 @@ def crear():
     
     return redirect(url_for('index'))
 
-@app.route('/editar/<int:id>')
+@app.route('/editar/<int:id>', methods=['GET', 'POST'])
+def editar (id):
+    producto = Producto.query.get_or_404(id)
+
+    if request.method == 'POST':
+        producto.nombre = request.form['nombre']
+        producto.precio = float(request.form['precio'])
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('editar.html', producto=producto)
+
+@app.route('/eliminar/<int:id>')
 def eliminar(id):
     producto = Producto.query.get_or_404(id)
     db.session.delete(producto)
     db.session.commit()
-    
     return redirect(url_for('index'))
+
 
 if __name__ == '__main__':
     with app.app_context():
